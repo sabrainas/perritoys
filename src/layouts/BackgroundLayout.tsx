@@ -1,11 +1,8 @@
+import { Outlet } from 'react-router-dom';
 import background from '../assets/bg-perritoys.jpeg';
 import { Navbar } from '../components/Navbar';
 
-interface BackgroundLayoutProps {
-  children: React.ReactNode;
-}
-
-export function BackgroundLayout({ children }: BackgroundLayoutProps) {
+export function BackgroundLayout() {
   return (
     <div
       className="min-h-screen w-full bg-cover bg-center flex flex-col"
@@ -13,7 +10,7 @@ export function BackgroundLayout({ children }: BackgroundLayoutProps) {
     >
       <Navbar />
       <div className="pt-16 flex-1">
-        {children}
+        <Outlet/>
       </div>
     </div>
   );
