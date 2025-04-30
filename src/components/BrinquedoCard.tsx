@@ -13,9 +13,8 @@ export default function BrinquedoCard({ brinquedo }: Readonly<Props>) {
             alt="imagem brinquedo" 
             className="w-full h-48 object-cover rounded-md mb-4"
         />
-        <h2 className="text-xl font-bold">{brinquedo.descricao}</h2>
-        <p className="text-gray-600">Tipo: {brinquedo.categoria}</p>
-        <p className="text-gray-600">Descrição: {brinquedo.detalhes}</p>
+        <h2 className="text-xl font-bold pb-2">{brinquedo.descricao}</h2>
+        <p className="font-bold text-[#c84755]"> R$ {brinquedo.valor}</p>
       </div>
     );
   }
