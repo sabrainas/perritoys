@@ -1,15 +1,15 @@
-import { useBrinquedos } from "../hooks/useBrinquedos";
-import BrinquedoCard from "../components/BrinquedoCard";
+//import { useBrinquedos } from "../hooks/useBrinquedos";
+//import BrinquedoCard from "../components/BrinquedoCard";
 
 export default function BrinquedoPage() {
-    const { brinquedos, loading } = useBrinquedos();
+    //const { brinquedos, loading } = useBrinquedos();
     console.log("Componente BrinquedoPage carregado");
 
     return (
     <>
-      {loading && (
+      {/* {loading && (
         <p className="p-4">Carregando brinquedos...</p>
-      )}
+      )} */}
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 bg-">
         {brinquedos.map((brinquedo) => (
           <BrinquedoCard key={brinquedo.codigo} brinquedo={brinquedo} />

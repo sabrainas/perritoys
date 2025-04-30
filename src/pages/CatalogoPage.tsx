@@ -21,7 +21,7 @@ export function CatalogoPage() {
             <h1 className="text-2xl font-semibold text-gray-800">NOME DO BRINQUEDO</h1>
             <p className="text-lg font-bold text-[#c84755]">R$ 0.00</p>
             <button className="bg-[#c84755] text-white px-4 py-2 rounded hover:bg-[#a73344] transition">
-              Adicionar ao carrinho
+              Comprar
             </button>
           </div>
         </section>
