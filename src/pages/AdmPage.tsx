@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createBrinquedo } from "../services/brinquedoApi";
+import { TableToys } from "../components/TableToys";
 
 export function AdmPage() {
   const [formData, setFormData] = useState({
@@ -171,6 +172,8 @@ export function AdmPage() {
           </div>
         </form>
       </section>
+
+      <TableToys/>
     </>
   );
 }
