@@ -14,6 +14,7 @@ function App() {
         <Route element={<BackgroundLayout />}>
           <Route path="/" element={<BrinquedoPage />} />
           <Route path="/catalogo" element={<CatalogoPage />} />
+          <Route path="/catalogo/:nome" element={<CatalogoPage />} />
           <Route path="/administracao" element={<AdmPage />} />
           <Route path="/equipe" element={<SobrePage />} />
         </Route>

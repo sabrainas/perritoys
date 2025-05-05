@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-interface CatalogCardProps {
+interface CategoryCardProps {
   nome: string;
   descricao: string;
   imagem: string;
 }
 
-export function CatalogCard({ nome, descricao, imagem }: CatalogCardProps) {
+export function CategoryCard({ nome, descricao, imagem }: CategoryCardProps) {
   const navigate = useNavigate();
 
   return (
