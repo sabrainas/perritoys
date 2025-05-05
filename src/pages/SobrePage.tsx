@@ -1,6 +1,6 @@
 import { UsCard } from "../components/UsCard";
 
-export default function SobrePage() {
+export function SobrePage() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
       <UsCard nome="Eduardo Antonio" ra="123456789" />
