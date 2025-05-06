@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createBrinquedo } from "../services/brinquedoApi";
+import Header from "../components/Header";
 
 export default function CadastroBrinquedos() {
     const [formData, setFormData] = useState({
@@ -47,9 +48,11 @@ export default function CadastroBrinquedos() {
       };
   return (
     <section className="max-w-3xl mx-auto px-6 pb-20">
+      <Header title="Cadastrar Brinquedo para Venda"/>
         <form
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          encType="multipart/form-data"
         >
           <div>
             <label className="block text-sm font-medium mb-1">Código</label>
@@ -118,7 +121,8 @@ export default function CadastroBrinquedos() {
               value={formData.img}
               onChange={handleChange}
               className="w-full border rounded px-3 py-2"
-              type="text"
+              type="file"
+              accept="image/*"
               required
             />
           </div>

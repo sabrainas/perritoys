@@ -8,7 +8,6 @@ export function SobrePage() {
       <UsCard nome="Johann Benjamin" ra="987654321" imagem="/foto.jpg" />
       <UsCard nome="Sabrina Mendonça" ra="987654321" imagem="/foto.jpg" />
       <UsCard nome="Vinicius Silva" ra="987654321" imagem="/foto.jpg" />
-      <UsCard nome="Prof. Jadir" ra="987654321" imagem="/foto.jpg" />
     </div>
   );
 }

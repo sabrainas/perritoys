@@ -26,5 +26,5 @@ export const createBrinquedo = async (brinquedo: Brinquedo) => {
 };
 
 export const deleteBrinquedo = async (codigo: string) => {
-    await api.delete(`/api/brinquedos/${codigo}`)
+    await api.delete(`/brinquedos/${codigo}`)
 }
