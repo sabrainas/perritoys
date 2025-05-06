@@ -1,20 +1,33 @@
-import { useBrinquedos } from "../hooks/useBrinquedos";
-import BrinquedoCard from "../components/BrinquedoCard";
+import { useParams } from "react-router-dom";
+import { brinquedosPorCategoria } from "../data/brinquedos";
+import { Brinquedo } from "../types/brinquedos";
 
 export default function BrinquedoPage() {
-    const { brinquedos, loading } = useBrinquedos();
-    console.log("Componente BrinquedoPage carregado");
+  const { id } = useParams();
+  const brinquedoId = Number(id);
 
-    return (
+  let brinquedoSelecionado: Brinquedo | undefined;
+
+  for (const lista of Object.values(brinquedosPorCategoria)) {
+    const encontrado = lista.find((b) => b.codigo === brinquedoId);
+    if (encontrado) {
+      brinquedoSelecionado = encontrado;
+      break;
+    }
+  }
+
+  if (!brinquedoSelecionado) {
+    return <div className="text-center mt-10 text-red-500">Brinquedo não encontrado</div>;
+  }
+
+  return (
     <>
-      {loading && (
-        <p className="p-4">Carregando brinquedos...</p>
-      )} 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 p-4 ">
-        {brinquedos.map((brinquedo) => (
-          <BrinquedoCard key={brinquedo.codigo} brinquedo={brinquedo} />
-        ))}
-      </div> 
+      <header className="p-10">
+        <h1 className="text-center text-3xl text-[#c84755] font-bold">
+          {brinquedoSelecionado.detalhes}
+        </h1>
+      </header>
+      {/* ...restante do código */}
     </>
   );
 }

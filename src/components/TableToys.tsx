@@ -1,5 +1,9 @@
-export function TableToys() {
-    return (
+import { useNavigate } from "react-router-dom";
+
+export default function TableToys() {
+  const navigate = useNavigate();
+ 
+  return (
       <div className="p-6">
         <table className="w-full border shadow-2xl rounded-lg overflow-hidden">
           <thead className="bg-[#c84755] text-white">
@@ -30,7 +34,7 @@ export function TableToys() {
         </table>
   
         <div className="mt-6 flex justify-end">
-          <button className="bg-[#c84755] text-white px-6 py-2 rounded-lg hover:bg-[#a0333f] transition">
+          <button onClick={() => navigate("/cadastro")} className="bg-[#c84755] text-white px-6 py-2 rounded-lg hover:bg-[#a0333f] transition">
             CADASTRAR NOVO BRINQUEDO
           </button>
         </div>

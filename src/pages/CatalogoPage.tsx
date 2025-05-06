@@ -1,71 +1,46 @@
 import { useParams } from "react-router-dom";
-import { Brinquedo } from "../types/brinquedos";
-import { CategoryCard } from "../components/CategoryCard";
-
-// Simulação de dados
-const categorias = [
-  {
-    nome: "Carrinhos",
-    descricao: "Diversos modelos de carrinhos",
-    imagem: "/img/carrinhos.jpg",
-  },
-  {
-    nome: "Bonecas",
-    descricao: "As bonecas mais lindas",
-    imagem: "/img/bonecas.jpg",
-  },
-];
-
-const brinquedosMock: Brinquedo[] = [
-  { codigo: 1, descricao: "Carrinho vermelho", img: "/img/car1.jpg", detalhes: "Carrinho esportivo", categoria: "carrinhos", marca: "HotWheels", valor: 99.9 },
-  { codigo: 2, descricao: "Boneca loira", img: "/img/doll1.jpg", detalhes: "Boneca com vestido rosa", categoria: "bonecas", marca: "Barbie", valor: 129.9 },
-];
+import { brinquedosPorCategoria } from "../data/brinquedos";
+import { CatalogSection } from "../components/CatalogSection";
 
 export function CatalogoPage() {
-  const { nome } = useParams();
+  const { nome } = useParams(); // opcional
+  const categoria = nome?.toLowerCase();
 
-  if (nome) {
-    const brinquedosFiltrados = brinquedosMock.filter(
-      (b) => b.categoria.toLowerCase() === nome.toLowerCase()
-    );
-
+  if (!nome) {
+    // Mostrar todas as categorias se nenhuma for especificada
     return (
-      <div className="p-8">
-        <h1 className="text-3xl font-bold text-[#c84755] mb-6 capitalize">
-          Categoria: {nome}
+      <div className="p-10">
+        <h1 className="text-3xl font-bold text-[#c84755] mb-6 text-center">
+          Catálogo de Brinquedos
         </h1>
-        {brinquedosFiltrados.length > 0 ? (
-          <div className="flex flex-wrap gap-4">
-            {brinquedosFiltrados.map((b) => (
-              <CategoryCard
-                key={b.codigo}
-                descricao={b.descricao}
-                imagem={b.img}
-                nome={b.detalhes}
-              />
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-600">Nenhum brinquedo encontrado nesta categoria.</p>
-        )}
+
+        {Object.entries(brinquedosPorCategoria).map(([nomeCategoria, brinquedos]) => (
+          <CatalogSection
+            key={nomeCategoria}
+            titulo={nomeCategoria.replace(/-/g, " ").toUpperCase()}
+            brinquedos={brinquedos}
+          />
+        ))}
       </div>
     );
   }
 
-  // Página com as categorias
-  return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold text-[#c84755] mb-6">Categorias</h1>
-      <div className="flex flex-wrap gap-4">
-        {categorias.map((cat) => (
-          <CategoryCard
-            key={cat.nome}
-            nome={cat.nome}
-            descricao={cat.descricao}
-            imagem={cat.imagem}
-          />
-        ))}
+  const brinquedos = brinquedosPorCategoria[categoria ?? ""] ?? [];
+
+  if (brinquedos.length === 0) {
+    return (
+      <div className="text-center text-red-500 mt-10">
+        Nenhum brinquedo encontrado para esta categoria.
       </div>
+    );
+  }
+
+  return (
+    <div className="p-10">
+      <h1 className="text-3xl font-bold text-[#c84755] mb-6 text-center capitalize">
+        {(categoria ?? "").replace(/-/g, " ")}
+      </h1>
+      <CatalogSection titulo="Brinquedos" brinquedos={brinquedos} />
     </div>
   );
 }

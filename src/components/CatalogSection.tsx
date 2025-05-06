@@ -13,12 +13,13 @@ export function CatalogSection({ titulo, brinquedos }: CatalogSectionProps) {
       <div className="flex flex-wrap gap-4">
         {brinquedos.map((item) => (
           <CategoryCard
-          key={item.codigo}
-          nome={item.descricao}
-          descricao={item.detalhes}
-          imagem={item.img}
-        />
-      ))}
+            key={item.codigo}
+            nome={item.detalhes}
+            descricao={item.descricao}
+            imagem={item.img}
+            codigo={item.codigo} // <- novo campo
+          />
+        ))}
       </div>
     </div>
   );

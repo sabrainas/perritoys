@@ -1,18 +1,19 @@
 import { useNavigate } from "react-router-dom";
 
-interface CategoryCardProps {
+interface Props {
   nome: string;
   descricao: string;
   imagem: string;
+  codigo: number;
 }
 
-export function CategoryCard({ nome, descricao, imagem }: CategoryCardProps) {
+export function CategoryCard({ nome, descricao, imagem, codigo }: Props) {
   const navigate = useNavigate();
 
   return (
     <div
-      className="cursor-pointer bg-white rounded-xl shadow-md overflow-hidden w-72 hover:shadow-lg transition"
-      onClick={() => navigate(`/catalogo/${nome.toLowerCase()}`)}
+      className="cursor-pointer bg-white rounded-xl shadow-md w-72 hover:shadow-lg transition"
+      onClick={() => navigate(`/brinquedo/${codigo}`)}
     >
       <img src={imagem} alt={nome} className="w-full h-40 object-cover" />
       <div className="p-4">

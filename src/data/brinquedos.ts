@@ -1,17 +1,41 @@
-export const brinquedos = [
+import { Brinquedo } from "../types/brinquedos";
+
+export const brinquedosPorCategoria: Record<string, Brinquedo[]> = {
+  "jogos-eletronicos": [
     {
-      codigo: "12345",
-      nome: "Carrinho Vermelho",
-      descricao: "Carrinho super rápido e divertido!",
-      preco: 59.99,
-      img: "/assets/carrinho-vermelho.jpg",
+      codigo: 1,
+      descricao: "Console portátil com 400 jogos",
+      categoria: "jogos-eletronicos",
+      marca: "GameTech",
+      img: "/img/console.jpg",
+      valor: 199.99,
+      detalhes: "Console retrô com tela colorida e controles embutidos.",
     },
+    // mais jogos eletrônicos
+  ],
+
+  "jogos-de-tabuleiro": [
     {
-      codigo: "67890",
-      nome: "Boneca Fashion",
-      descricao: "Boneca com roupas estilosas e muitos acessórios.",
-      preco: 89.9,
-      img: "/assets/boneca-fashion.jpg",
+      codigo: 2,
+      descricao: "Jogo de estratégia familiar",
+      categoria: "jogos-de-tabuleiro",
+      marca: "Grow",
+      img: "/img/tabuleiro.jpg",
+      valor: 89.90,
+      detalhes: "Jogo divertido para todas as idades, com cartas e peças.",
     },
-  ];
-  
+    // mais tabuleiros
+  ],
+
+  "brinquedos": [
+    {
+      codigo: 3,
+      descricao: "Carrinho de corrida vermelho",
+      categoria: "brinquedos",
+      marca: "HotWheels",
+      img: "/img/carrinho.jpg",
+      valor: 49.90,
+      detalhes: "Carrinho de alta velocidade com rodas esportivas.",
+    },
+  ],
+};
