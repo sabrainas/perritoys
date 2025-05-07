@@ -35,7 +35,13 @@ export const getCategorias = async (): Promise<string[]> => {
     return response.data;
   };
 
-  export const getBrinquedosPorCategoria = async (categoria: string): Promise<Brinquedo[]> => {
+export const getBrinquedosPorCategoria = async (categoria: string): Promise<Brinquedo[]> => {
     const response = await api.get(`/brinquedos/categorias/${encodeURIComponent(categoria)}`);
     return response.data;
-  };
+};
+
+export const putBrinquedo = async (codigo: number, brinquedo: Brinquedo) => {
+    const response = await api.put(`/brinquedos/${codigo}`, brinquedo);
+    return response.data;
+};  
+  

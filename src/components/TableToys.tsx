@@ -43,7 +43,9 @@ export default function TableToys() {
               <td className="py-2 px-4">R$ {brinquedo.valor.toFixed(2)}</td>
               <td className="py-2 px-4">
                 <div className="flex items-center gap-4">
-                  <button className="text-blue-600 font-semibold hover:underline transition">
+                  <button 
+                    onClick={() => navigate("/cadastro", { state: { brinquedo }})}
+                    className="text-blue-600 font-semibold hover:underline transition">
                     Editar
                   </button>
                   <button

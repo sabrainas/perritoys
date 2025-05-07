@@ -1,22 +1,50 @@
-import { useState } from "react";
-import { createBrinquedo } from "../services/brinquedoApi";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { createBrinquedo, getBrinquedoByCodigo, putBrinquedo } from "../services/brinquedoApi";
 import Header from "../components/Header";
 
 export default function CadastroBrinquedos() {
+  const navigate = useNavigate();
+  const { codigo } = useParams(); // Captura o 'codigo' da URL
+  const location = useLocation();
+
+  const brinquedoEditando = location.state?.brinquedo;  
   const [formData, setFormData] = useState({
-    codigo: "",
-    categoria: "",
-    descricao: "",
-    marca: "",
-    valor: "",
-    img: [] as string[], 
-    imgType: "",
-    detalhes: "",
+    codigo: brinquedoEditando?.codigo ?? "",
+    categoria: brinquedoEditando?.categoria ?? "",
+    descricao: brinquedoEditando?.descricao ?? "",
+    marca: brinquedoEditando?.marca ?? "",
+    valor: brinquedoEditando?.valor?.toString() ?? "",
+    img: brinquedoEditando?.img ? [brinquedoEditando.img] : [],
+    imgType: brinquedoEditando?.imgType ?? "",
+    detalhes: brinquedoEditando?.detalhes ?? "",
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  useEffect(() => {
+    if (codigo) {
+      const fetchBrinquedo = async () => {
+        try {
+          const brinquedo = await getBrinquedoByCodigo(Number(codigo));
+          console.log("Brinquedo encontrado:", brinquedo);
+          setFormData({
+            codigo: brinquedo.codigo.toString(),
+            categoria: brinquedo.categoria,
+            descricao: brinquedo.descricao,
+            marca: brinquedo.marca,
+            valor: brinquedo.valor.toString(),
+            img: brinquedo.img ? [brinquedo.img] : [],
+            imgType: brinquedo.imgType ?? "",
+            detalhes: brinquedo.detalhes,
+          });
+        } catch (error) {
+          console.error("Erro ao carregar brinquedo:", error);
+        }
+      };
+      fetchBrinquedo();
+    }
+  }, [codigo]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -42,17 +70,25 @@ export default function CadastroBrinquedos() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const brinquedoPayload = {
+      ...formData,
+      img: formData.img[0], // Assegure-se de enviar apenas uma imagem (não um array)
+      codigo: parseInt(formData.codigo),
+      valor: parseFloat(formData.valor),
+    };
+
     try {
-      const brinquedo = {
-        ...formData,
-        img: formData.img[0],
-        codigo: parseInt(formData.codigo),
-        valor: parseFloat(formData.valor),
-      };
+      if (codigo) {
+        // Edição do brinquedo
+        await putBrinquedo(parseInt(codigo), brinquedoPayload);
+        alert("Brinquedo atualizado com sucesso!");
+      } else {
+        // Criação do brinquedo
+        await createBrinquedo(brinquedoPayload);
+        alert("Brinquedo cadastrado com sucesso!");
+      }
 
-      await createBrinquedo(brinquedo);
-      alert("Brinquedo cadastrado com sucesso!");
-
+      // Limpa o formulário e redireciona
       setFormData({
         codigo: "",
         categoria: "",
@@ -63,14 +99,16 @@ export default function CadastroBrinquedos() {
         imgType: "",
         detalhes: "",
       });
+
+      navigate("/"); // Redireciona para a página inicial (ou onde você achar melhor)
     } catch (err: any) {
-      alert("Erro ao cadastrar brinquedo: " + err.message);
+      alert("Erro ao salvar brinquedo: " + err.message);
     }
   };
 
   return (
     <section className="max-w-3xl mx-auto px-6 pb-20">
-      <Header title="Cadastrar Brinquedo para Venda" />
+      <Header title={codigo ? "Editar Brinquedo" : "Cadastrar Brinquedo para Venda"} />
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -78,14 +116,18 @@ export default function CadastroBrinquedos() {
       >
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-1">Categoria</label>
-          <input
+          <select
             name="categoria"
             value={formData.categoria}
             onChange={handleChange}
             className="w-full border rounded px-3 py-2"
-            type="text"
             required
-          />
+          >
+            <option value="">Selecione uma categoria</option>
+            <option value="Jogos Eletrônicos">Jogos Eletrônicos</option>
+            <option value="Jogos Infantis">Jogos Infantis</option>
+            <option value="Pelucias">Pelúcias</option>
+          </select>
         </div>
 
         <div className="md:col-span-2">
@@ -126,13 +168,25 @@ export default function CadastroBrinquedos() {
 
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-1">Imagem</label>
+          
+          {formData.img.length > 0 && (
+            <div className="mb-2">
+              <p className="text-sm text-gray-600">Imagem atual:</p>
+              <img
+                src={`data:${formData.imgType};base64,${formData.img[0]}`}
+                alt="Imagem do brinquedo"
+                className="w-48 h-auto border rounded shadow"
+              />
+            </div>
+          )}
+
           <input
             name="img"
             onChange={handleImageChange}
             className="w-full border rounded px-3 py-2"
             type="file"
             accept="image/*"
-            required
+            required={formData.img.length === 0}
           />
         </div>
 
@@ -154,7 +208,7 @@ export default function CadastroBrinquedos() {
             type="submit"
             className="bg-[#c84755] hover:bg-[#a0333f] text-white px-6 py-2 rounded font-semibold transition"
           >
-            CADASTRAR BRINQUEDO
+            {codigo ? "SALVAR ALTERAÇÕES" : "CADASTRAR BRINQUEDO"}
           </button>
           <button
             type="button"
