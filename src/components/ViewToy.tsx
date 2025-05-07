@@ -34,6 +34,7 @@ export default function ViewToy() {
         <div className="flex-1 space-y-4">
           <h2 className="text-gray-600 text-sm">ID: {brinquedo.codigo}</h2>
           <h1 className="text-2xl font-semibold text-gray-800">{brinquedo.descricao}</h1>
+          <h1 className="text-2xl font-semibold text-gray-800">{brinquedo.marca}</h1>
           <p className="text-lg font-bold text-[#c84755]">R$ {brinquedo.valor}</p>
         </div>
       </section>
