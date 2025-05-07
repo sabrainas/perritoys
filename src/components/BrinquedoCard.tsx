@@ -8,7 +8,7 @@ export default function BrinquedoCard({ brinquedo }: Readonly<Props>) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/brinquedo/${brinquedo.codigo}`, { state: { brinquedo } });
+    navigate(`/visualizar-brinquedo/${brinquedo.codigo}`, { state: { brinquedo } });
   };
 
   return (
