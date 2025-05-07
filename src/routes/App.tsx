@@ -20,7 +20,7 @@ function App() {
           <Route path="/administracao" element={<AdmPage />} />
           <Route path="/equipe" element={<SobrePage />} />
           <Route path="/cadastro" element={<CadastroBrinquedos />} /> 
-          <Route path="/brinquedo/:id" element={<ViewToy />} />
+          <Route path="/visualizar-brinquedo/:id" element={<ViewToy />} />
         </Route>
       </Routes>
     </Router>
