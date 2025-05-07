@@ -29,3 +29,13 @@ export const createBrinquedo = async (brinquedo: Brinquedo) => {
 export const deleteBrinquedo = async (codigo: string) => {
     await api.delete(`/brinquedos/${codigo}`)
 }
+
+export const getCategorias = async (): Promise<string[]> => {
+    const response = await api.get("/brinquedos/categorias");
+    return response.data;
+  };
+
+  export const getBrinquedosPorCategoria = async (categoria: string): Promise<Brinquedo[]> => {
+    const response = await api.get(`/brinquedos/categorias/${encodeURIComponent(categoria)}`);
+    return response.data;
+  };

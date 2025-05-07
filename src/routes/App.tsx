@@ -7,6 +7,7 @@ import BrinquedoPage from "../pages/BrinquedoPage"; // Detalhes do brinquedo
 import HomePage from "../pages/HomePage";
 import CadastroBrinquedos from "../layouts/CadastroBrinquedos";
 import ViewToy from "../components/ViewToy";
+import { CategoriaPage } from "../pages/CategoriaPage";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route element={<BackgroundLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/catalogo" element={<CatalogoPage />} />
-          <Route path="/catalogo/:nome" element={<CatalogoPage />} /> 
+          <Route path="/catalogo/:nome" element={<CategoriaPage />} /> 
           <Route path="/brinquedo/:id" element={<BrinquedoPage />} />
           <Route path="/administracao" element={<AdmPage />} />
           <Route path="/equipe" element={<SobrePage />} />
