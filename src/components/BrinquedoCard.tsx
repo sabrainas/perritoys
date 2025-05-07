@@ -10,7 +10,7 @@ export default function BrinquedoCard({ brinquedo }: Readonly<Props>) {
   return (
     <div className="bg-white rounded-xl shadow-md p-4 w-full max-w-sm">
       <img 
-          src={brinquedo.img} 
+          src={`data:${brinquedo.imgType};base64,${brinquedo.img}`}
           alt="imagem brinquedo" 
           className="w-full h-48 object-cover rounded-md mb-4"
       />

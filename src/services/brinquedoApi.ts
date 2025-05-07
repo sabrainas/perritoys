@@ -6,6 +6,7 @@ export interface Brinquedo {
     categoria: string,
     marca: string,
     img: string,
+    imgType: string,
     valor: number,
     detalhes: string
 }
