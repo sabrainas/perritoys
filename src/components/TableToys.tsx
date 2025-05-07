@@ -27,6 +27,7 @@ export default function TableToys() {
       <table className="w-full border shadow-2xl rounded-lg overflow-hidden">
         <thead className="bg-[#c84755] text-white">
           <tr>
+            <th className="py-3 px-4 text-left">ID</th>
             <th className="py-3 px-4 text-left">NOME DO PRODUTO</th>
             <th className="py-3 px-4 text-left">CATEGORIA</th>
             <th className="py-3 px-4 text-left">VALOR</th>

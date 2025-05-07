@@ -35,9 +35,6 @@ export default function ViewToy() {
           <h2 className="text-gray-600 text-sm">ID: {brinquedo.codigo}</h2>
           <h1 className="text-2xl font-semibold text-gray-800">{brinquedo.descricao}</h1>
           <p className="text-lg font-bold text-[#c84755]">R$ {brinquedo.valor}</p>
-          <button className="bg-[#c84755] text-white px-4 py-2 rounded hover:bg-[#a73344] transition">
-            Adicionar ao carrinho
-          </button>
         </div>
       </section>
 
