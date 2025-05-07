@@ -6,6 +6,7 @@ import { SobrePage } from "../pages/SobrePage";
 import BrinquedoPage from "../pages/BrinquedoPage"; // Detalhes do brinquedo
 import HomePage from "../pages/HomePage";
 import CadastroBrinquedos from "../layouts/CadastroBrinquedos";
+import ViewToy from "../components/ViewToy";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/administracao" element={<AdmPage />} />
           <Route path="/equipe" element={<SobrePage />} />
           <Route path="/cadastro" element={<CadastroBrinquedos />} /> 
+          <Route path="/brinquedo/:id" element={<ViewToy />} />
         </Route>
       </Routes>
     </Router>

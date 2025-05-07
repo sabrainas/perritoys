@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Brinquedo } from "../services/brinquedoApi";
+import { Brinquedo } from "../services/brinquedoApi"; 
 
 interface Props {
   brinquedo: Brinquedo;
