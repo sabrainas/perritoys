@@ -54,19 +54,7 @@ export default function CadastroBrinquedos() {
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
           encType="multipart/form-data"
         >
-          <div>
-            <label className="block text-sm font-medium mb-1">Código</label>
-            <input
-              name="codigo"
-              value={formData.codigo}
-              onChange={handleChange}
-              className="w-full border rounded px-3 py-2"
-              type="number"
-              required
-            />
-          </div>
-
-          <div>
+          <div className="md:col-span-2">
             <label className="block text-sm font-medium mb-1">Categoria</label>
             <input
               name="categoria"

@@ -36,6 +36,7 @@ export default function TableToys() {
         <tbody>
           {brinquedos.map((brinquedo) => (
             <tr key={brinquedo.codigo} className="border-t even:bg-gray-50">
+              <td className="py-2 px-4">{brinquedo.codigo}</td>
               <td className="py-2 px-4">{brinquedo.descricao}</td>
               <td className="py-2 px-4">{brinquedo.categoria}</td>
               <td className="py-2 px-4">R$ {brinquedo.valor.toFixed(2)}</td>
