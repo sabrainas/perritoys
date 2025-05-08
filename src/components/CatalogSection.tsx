@@ -17,7 +17,7 @@ export function CatalogSection({ titulo, brinquedos }: Props) {
             brinquedo={{
               ...item,
               imgBase64: item.imgBase64,
-              imgType: item.imgType || "image/jpeg", // valor padrão, se necessário
+              imgType: item.imgType || "image/jpeg",
             }}
           />
         ))}

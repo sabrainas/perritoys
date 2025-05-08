@@ -9,6 +9,7 @@ import CadastroBrinquedos from "../layouts/CadastroBrinquedos";
 import ViewToy from "../components/ViewToy";
 import { CategoriaPage } from "../pages/CategoriaPage";
 import ViewToyCategory from "../components/ViewToyCategory";
+import TableToys from "../components/TableToys";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/catalogo/:nome" element={<CategoriaPage />} /> 
           <Route path="/brinquedo/:id" element={<BrinquedoPage />} />
           <Route path="/administracao" element={<AdmPage />} />
+          <Route path="/admin/dashboard" element={<TableToys />} />
           <Route path="/equipe" element={<SobrePage />} />
           <Route path="/cadastro" element={<CadastroBrinquedos />} />
           <Route path="/cadastro/:codigo" element={<CadastroBrinquedos />} /> 

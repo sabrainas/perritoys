@@ -1,17 +1,12 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Login from "../layouts/Login";
-import TableToys from "../components/TableToys";
 
 export function AdmPage() {
-  const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
 
-  return (
-    <>
-      {!isLogged ? (
-        <Login onLoginSuccess={() => setIsLogged(true)} />
-      ) : (
-        <TableToys />
-      )}
-    </>
-  );
+  const handleLogin = () => {
+    navigate("/admin/dashboard");
+  };
+
+  return <Login onLoginSuccess={handleLogin} />;
 }

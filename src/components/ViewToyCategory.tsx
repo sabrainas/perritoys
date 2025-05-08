@@ -7,7 +7,6 @@ export default function ViewToyCategory() {
   const navigate = useNavigate();
   const brinquedo: BrinquedoDaCategoria = location.state?.brinquedo;
 
-  // Caso o brinquedo não esteja no state, exiba uma mensagem de erro
   if (!brinquedo) {
     return (
       <div className="text-center mt-20">

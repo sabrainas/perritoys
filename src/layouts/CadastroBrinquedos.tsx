@@ -5,7 +5,7 @@ import Header from "../components/Header";
 
 export default function CadastroBrinquedos() {
   const navigate = useNavigate();
-  const { codigo } = useParams(); // Captura o 'codigo' da URL
+  const { codigo } = useParams(); 
   const location = useLocation();
 
   const brinquedoEditando = location.state?.brinquedo;  
@@ -20,13 +20,12 @@ export default function CadastroBrinquedos() {
     detalhes: brinquedoEditando?.detalhes ?? "",
   });
 
-  const [categorias, setCategorias] = useState<string[]>([]); // Novo estado para as categorias
+  const [categorias, setCategorias] = useState<string[]>([]); 
 
-  // Carregar categorias no carregamento do componente
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
-        const categoriasData = await getCategorias(); // Busca as categorias
+        const categoriasData = await getCategorias(); 
         setCategorias(categoriasData);
       } catch (error) {
         console.error("Erro ao carregar categorias:", error);
@@ -87,23 +86,20 @@ export default function CadastroBrinquedos() {
 
     const brinquedoPayload = {
       ...formData,
-      img: formData.img[0], // Assegure-se de enviar apenas uma imagem (não um array)
+      img: formData.img[0], 
       codigo: parseInt(formData.codigo),
       valor: parseFloat(formData.valor),
     };
 
     try {
       if (codigo) {
-        // Edição do brinquedo
         await putBrinquedo(parseInt(codigo), brinquedoPayload);
         alert("Brinquedo atualizado com sucesso!");
       } else {
-        // Criação do brinquedo
         await createBrinquedo(brinquedoPayload);
         alert("Brinquedo cadastrado com sucesso!");
       }
 
-      // Limpa o formulário e redireciona
       setFormData({
         codigo: "",
         categoria: "",
@@ -115,10 +111,14 @@ export default function CadastroBrinquedos() {
         detalhes: "",
       });
 
-      navigate("/"); // Redireciona para a página inicial (ou onde você achar melhor)
+      navigate("/administracao"); 
     } catch (err: any) {
       alert("Erro ao salvar brinquedo: " + err.message);
     }
+  };
+
+  const handleCancel = () => {
+    navigate("/admin/dashboard");
   };
 
   return (
@@ -229,18 +229,7 @@ export default function CadastroBrinquedos() {
           <button
             type="button"
             className="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded font-semibold transition"
-            onClick={() =>
-              setFormData({
-                codigo: "",
-                categoria: "",
-                descricao: "",
-                marca: "",
-                valor: "",
-                img: [],
-                imgType: "",
-                detalhes: "",
-              })
-            }
+            onClick={handleCancel}
           >
             CANCELAR
           </button>
