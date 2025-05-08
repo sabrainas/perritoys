@@ -19,13 +19,13 @@ export function CatalogoPage() {
 
       <div className="flex flex-wrap gap-6 justify-center">
         {categorias.map((cat) => (
-          <div
+          <button
             key={cat}
             className="cursor-pointer bg-white rounded-xl shadow-md w-72 hover:shadow-lg transition p-4"
             onClick={() => navigate(`/catalogo/${cat}`)}
           >
             <h3 className="text-xl font-bold text-[#c84755] text-center">{cat}</h3>
-          </div>
+          </button>
         ))}
       </div>
     </div>

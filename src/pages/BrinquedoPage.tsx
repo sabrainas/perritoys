@@ -21,13 +21,10 @@ export default function BrinquedoPage() {
   }
 
   return (
-    <>
-      <header className="p-10">
-        <h1 className="text-center text-3xl text-[#c84755] font-bold">
-          {brinquedoSelecionado.detalhes}
-        </h1>
-      </header>
-      {/* ...restante do código */}
-    </>
+    <header className="p-10">
+      <h1 className="text-center text-3xl text-[#c84755] font-bold">
+        {brinquedoSelecionado.detalhes}
+      </h1>
+    </header>
   );
 }

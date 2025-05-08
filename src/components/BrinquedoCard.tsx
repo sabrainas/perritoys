@@ -12,7 +12,7 @@ export default function BrinquedoCard({ brinquedo }: Readonly<Props>) {
   };
 
   return (
-    <div
+    <button
       onClick={handleClick}
       className="bg-white rounded-xl shadow-md p-4 w-full max-w-sm cursor-pointer hover:shadow-lg transition"
     >
@@ -23,6 +23,6 @@ export default function BrinquedoCard({ brinquedo }: Readonly<Props>) {
       />
       <h2 className="text-xl font-bold pb-2">{brinquedo.descricao}</h2>
       <p className="font-bold text-[#c84755]"> R$ {brinquedo.valor}</p>
-    </div>
+    </button>
   );
 }

@@ -1,12 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
-import { Brinquedo } from "../services/brinquedoApi";
+import { BrinquedoDaCategoria } from "../services/brinquedoApi";
 
-export default function ViewToy() {
+export default function ViewToyCategory() {
   const location = useLocation();
   const navigate = useNavigate();
-  const brinquedo: Brinquedo = location.state?.brinquedo;
+  const brinquedo: BrinquedoDaCategoria = location.state?.brinquedo;
 
+  // Caso o brinquedo não esteja no state, exiba uma mensagem de erro
   if (!brinquedo) {
     return (
       <div className="text-center mt-20">
@@ -25,7 +26,7 @@ export default function ViewToy() {
       <section className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-start gap-8">
         <div className="flex-1 max-w-sm">
           <img
-            src={`data:${brinquedo.imgType};base64,${brinquedo.img}`} 
+            src={`data:${brinquedo.imgType};base64,${brinquedo.imgBase64}`} 
             alt="imagem do brinquedo"
             className="w-full h-60 rounded-lg shadow-md object-cover"
           />

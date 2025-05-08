@@ -10,7 +10,7 @@ export function UsCard({ nome, ra, imagem }: UsCardProps) {
       <img
         src={imagem ?? "/placeholder.jpg"} 
         alt="imagem sobre nós"
-        className="w-full h-48 object-cover rounded-md mb-4 border"
+        className="w-full h-60 object-cover rounded-md mb-4 border"
       />
       <div className="flex justify-center flex-col items-center">
         <h2 className="text-xl font-bold pb-2">{nome}</h2>

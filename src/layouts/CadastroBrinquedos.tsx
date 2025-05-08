@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { createBrinquedo, getBrinquedoByCodigo, putBrinquedo } from "../services/brinquedoApi";
+import { createBrinquedo, getBrinquedoByCodigo, putBrinquedo, getCategorias } from "../services/brinquedoApi";
 import Header from "../components/Header";
 
 export default function CadastroBrinquedos() {
@@ -19,6 +19,21 @@ export default function CadastroBrinquedos() {
     imgType: brinquedoEditando?.imgType ?? "",
     detalhes: brinquedoEditando?.detalhes ?? "",
   });
+
+  const [categorias, setCategorias] = useState<string[]>([]); // Novo estado para as categorias
+
+  // Carregar categorias no carregamento do componente
+  useEffect(() => {
+    const fetchCategorias = async () => {
+      try {
+        const categoriasData = await getCategorias(); // Busca as categorias
+        setCategorias(categoriasData);
+      } catch (error) {
+        console.error("Erro ao carregar categorias:", error);
+      }
+    };
+    fetchCategorias();
+  }, []);
 
   useEffect(() => {
     if (codigo) {
@@ -124,9 +139,11 @@ export default function CadastroBrinquedos() {
             required
           >
             <option value="">Selecione uma categoria</option>
-            <option value="Jogos Eletrônicos">Jogos Eletrônicos</option>
-            <option value="Jogos Infantis">Jogos Infantis</option>
-            <option value="Pelucias">Pelúcias</option>
+            {categorias.map((categoria, index) => (
+              <option key={index} value={categoria}>
+                {categoria}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -168,7 +185,6 @@ export default function CadastroBrinquedos() {
 
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-1">Imagem</label>
-          
           {formData.img.length > 0 && (
             <div className="mb-2">
               <p className="text-sm text-gray-600">Imagem atual:</p>

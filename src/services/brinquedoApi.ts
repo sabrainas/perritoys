@@ -11,6 +11,17 @@ export interface Brinquedo {
     detalhes: string
 }
 
+export interface BrinquedoDaCategoria {
+    marca: string;
+    codigo: number;
+    imgBase64: string;
+    imgType: string;
+    categoria: string;
+    valor: number;
+    detalhes: string;
+    descricao: string;
+  }
+
 export const getAllBrinquedos = async () => {
     const response = await api.get("/brinquedos");
     return response.data;
@@ -35,7 +46,7 @@ export const getCategorias = async (): Promise<string[]> => {
     return response.data;
   };
 
-export const getBrinquedosPorCategoria = async (categoria: string): Promise<Brinquedo[]> => {
+export const getBrinquedosPorCategoria = async (categoria: string): Promise<BrinquedoDaCategoria[]> => {
     const response = await api.get(`/brinquedos/categorias/${encodeURIComponent(categoria)}`);
     return response.data;
 };

@@ -1,19 +1,26 @@
-// CategoriaPage.tsx
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getBrinquedosPorCategoria } from "../services/brinquedoApi";
-import { Brinquedo } from "../types/brinquedos";
+import { getBrinquedosPorCategoria } from "../services/brinquedoApi"; 
 import { CatalogSection } from "../components/CatalogSection";
+import { BrinquedoDaCategoria } from "../types/categoria";
 
 export function CategoriaPage() {
   const { nome } = useParams();
-  const [brinquedos, setBrinquedos] = useState<Brinquedo[]>([]);
+  const [brinquedos, setBrinquedos] = useState<BrinquedoDaCategoria[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (nome) {
       getBrinquedosPorCategoria(nome)
-        .then(setBrinquedos)
+        .then((data) => {
+          // Aqui você pode mapear os brinquedos e garantir que eles se ajustem à estrutura de BrinquedoDaCategoria
+          const brinquedosDaCategoria: BrinquedoDaCategoria[] = data.map(brinquedo => ({
+            ...brinquedo,
+            img: brinquedo.imgBase64 ? `data:${brinquedo.imgType};base64,${brinquedo.imgBase64}` : '',  // Convertendo imgBase64 para o formato de URL
+            imgType: brinquedo.imgType || 'image/jpeg',  // Valor padrão para o tipo da imagem
+          }));
+          setBrinquedos(brinquedosDaCategoria);  // Atualiza o estado com os brinquedos convertidos
+        })
         .catch(console.error)
         .finally(() => setLoading(false));
     }
