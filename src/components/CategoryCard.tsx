@@ -4,10 +4,11 @@ interface Props {
   nome: string;
   descricao: string;
   imagem: string;
+  imgType: string; // <- novo
   codigo: number;
 }
 
-export function CategoryCard({ nome, descricao, imagem, codigo }: Props) {
+export function CategoryCard({ nome, descricao, imagem, imgType, codigo }: Props) {
   const navigate = useNavigate();
 
   return (
@@ -15,7 +16,11 @@ export function CategoryCard({ nome, descricao, imagem, codigo }: Props) {
       className="cursor-pointer bg-white rounded-xl shadow-md w-72 hover:shadow-lg transition"
       onClick={() => navigate(`/brinquedo/${codigo}`)}
     >
-      <img src={imagem} alt={nome} className="w-full h-40 object-cover" />
+      <img
+        src={`data:${imgType};base64,${imagem}`}
+        alt={nome}
+        className="w-full h-40 object-cover"
+      />
       <div className="p-4">
         <h3 className="text-xl font-bold text-[#c84755] mb-2">{nome}</h3>
         <p className="text-gray-600 text-sm">{descricao}</p>
