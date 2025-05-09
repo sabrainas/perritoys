@@ -111,7 +111,7 @@ export default function CadastroBrinquedos() {
         detalhes: "",
       });
 
-      navigate("/administracao"); 
+      navigate("/admin/dashboard"); 
     } catch (err: any) {
       alert("Erro ao salvar brinquedo: " + err.message);
     }
