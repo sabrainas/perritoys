@@ -12,7 +12,7 @@ export default function BrinquedoPage() {
         <p className="p-4">Carregando brinquedos...</p>
       ) : (
         <>
-          <Header title="Brinquedos em Destaque" />     
+          <Header title="Brinquedos Disponíveis" />     
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 p-4 ">
             {brinquedos.map((brinquedo) => (
               <BrinquedoCard key={brinquedo.codigo} brinquedo={brinquedo} />
