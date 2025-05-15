@@ -7,7 +7,7 @@ import { UsCard } from '../components/UsCard';
 
 export function SobrePage() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 mx-auto max-w-6xl">
       <UsCard nome="Eduardo Antonio" ra="1670482312008" imagem={duduImg} />
       <UsCard nome="Gustavo Pires" ra="1670482312033" imagem={gustaImg} />
       <UsCard nome="Johann Benjamin" ra="1670482312014" imagem={bolivarImg} />
